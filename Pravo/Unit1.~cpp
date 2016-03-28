@@ -24,6 +24,8 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 
 void __fastcall TForm1::FormActivate(TObject *Sender)
 {
+Form1->Left=Screen->Width/2-Form1->ClientWidth/2;
+Form1->Top=Screen->Height/2-Form1->ClientHeight/2;
 Memo1->Clear();
 Memo2->Clear();
 Memo2->Lines->LoadFromFile("Spisok.txt"); 

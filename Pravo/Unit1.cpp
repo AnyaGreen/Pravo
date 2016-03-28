@@ -13,8 +13,8 @@
 TForm1 *Form1;
 int shet=1;
 int a=1;
-int flag=7;
-TStringList *List = new TStringList( );
+int flag=7; //счетчик вопросов
+TStringList *List = new TStringList( ); //Текст вопросов
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
         : TForm(Owner)
@@ -58,13 +58,14 @@ SpeedButton2->Enabled=true;
 
 void __fastcall TForm1::SpeedButton1Click(TObject *Sender)
 {
+//Проверка на наличие большого количества контента рейтинга 18+
 if ( (RadioButton1->Checked==true) || ((RadioButton2->Checked==true) && ( (shet==1) || (shet==2) || (shet==5) ) ))
 {
 Form3->Show();
 Form3->Edit1->Text=Form1->Edit1->Text;
 Form3->Edit2->Text="18+";
 }
-
+//сохранение промежуточных результатов
 if (a==3) Form2->StringGrid1->Cells[shet-1][0]="3";
 else if (a==1) Form2->StringGrid1->Cells[shet-1][0]="1";
 else if (a==2) Form2->StringGrid1->Cells[shet-1][0]="2";
@@ -133,11 +134,13 @@ else if (a==5) Form2->StringGrid1->Cells[shet-1][0]="5";
 for (int i=0; i<=7; i++)
 {
         if ( (Form2->StringGrid1->Cells[i][0]=="4") || (Form2->StringGrid1->Cells[i][0]=="5") )
+        //проверяем рейтинг 0+ и далее отталкиваемся от него в опрделении остальных рейтингов
         flag=0;
                 else
                 {
                         if ( (Form2->StringGrid1->Cells[i][0]=="3") && ( (i==3) || (i==7)  ) )
-                                {
+
+                                { //рейтинг 6+
                                         flag=1;
                                         break;
                                 }
@@ -145,18 +148,19 @@ for (int i=0; i<=7; i++)
                                 {
                                         if ( (Form2->StringGrid1->Cells[i][0]=="3") && ( (i==1) || (i==2) || (i==6)  ) )
                                                 {
+                                                //рейтинг 12+
                                                 flag=2;
                                                 break;
                                                 }
                                         else
-                                                {
+                                                {  //рейтинг 16+
                                                 if ( (Form2->StringGrid1->Cells[i][0]=="2") && ( (i>=2)&& (i<=7) && (i!=4)  ) )
                                                 {
                                                 flag=3;
                                                 break;
                                                 }
                                                 else
-                                                {
+                                                {  //рейтинг 18+
                                                 flag=4;
                                                 break;
                                                  }
@@ -165,6 +169,8 @@ for (int i=0; i<=7; i++)
                 }
 }
 //---------------
+
+//вывод соответствующих результатов
 
 
 
