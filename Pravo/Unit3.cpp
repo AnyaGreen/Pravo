@@ -25,6 +25,7 @@ fclose(f);
 
 void __fastcall TForm3::SpeedButton1Click(TObject *Sender)
 {
+//сохранение результатов в файл
 AnsiString p=Form3->Edit1->Text+" "+":"+" "+"Рейтинг"+" "+Form3->Edit2->Text+"\n";
 SaveToFile(p);
 

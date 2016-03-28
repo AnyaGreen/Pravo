@@ -32,4 +32,10 @@ Form3->Close();
 Form1->Close();
 }
 //---------------------------------------------------------------------------
- 
+
+void __fastcall TForm3::FormActivate(TObject *Sender)
+{
+Form3->Left=Screen->Width/2-Form3->ClientWidth/2;
+Form3->Top=Screen->Height/2-Form3->ClientHeight/2;
+}
+//---------------------------------------------------------------------------
